@@ -9,7 +9,7 @@ import argparse
 import time
 
 
-class VideoStreamer(object):
+class VideoStreamer:
     def __init__(self, topic_name: str, video_src, freq: float):
         rospy.init_node("image_subscriber_node", anonymous=True)
         rospy.loginfo("Initializing ImageSubscriber node.")

@@ -2,7 +2,9 @@ import numpy as np
 import torch
 from beartype import beartype
 from nptyping import NDArray, Shape, Float32, UInt8
+
 from typing import NewType
+from typing import Dict
 
 
 Image = NewType("Image", NDArray[Shape["H, W, 3"], UInt8])
@@ -22,3 +24,8 @@ class Detector:
 
         preds = self.model(img_rgb)
         return preds.xyxy[0].cpu().numpy().reshape(-1, 6)
+
+    @beartype
+    @property
+    def classes(self) -> Dict[int, str]:
+        return self.model.names
